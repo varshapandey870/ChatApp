@@ -1,7 +1,9 @@
-import express from "express";
 import dotenv from "dotenv";
-import {connectDB} from "./lib/db.js";
 dotenv.config();
+import express from "express";
+import {connectDB} from "./lib/db.js";
+import authRoutes from "./routes/auth.route.js";
+
 
 const app = express();
 app.use(express.json());
@@ -18,6 +20,8 @@ app.get("/" , (req,res) =>{
         console.log(err);
     }
 })
+
+app.use("/api/auth" , authRoutes);
 app.listen(port,() =>{
     console.log("server is running....");
     
